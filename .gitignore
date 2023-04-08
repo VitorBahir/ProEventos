@@ -523,3 +523,8 @@ testem.log
 .DS_Store
 Thumbs.db
 
+# Delete DB
+*.db
+*.db-sch
+*.db-wal
+
