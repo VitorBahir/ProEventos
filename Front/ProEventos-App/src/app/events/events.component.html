@@ -30,22 +30,22 @@
       <th>Opções</th>
     </tr>
   </thead>
-  <tbody *ngIf="eventos && eventos.length">
-    <tr *ngFor="let evento of eventosFiltrados">
+  <tbody *ngIf="events && events.length">
+    <tr *ngFor="let event of filteredEvents">
       <td>
         <img [collapse]="!displayImg"
             [isAnimated]="true"
-         src="/assets/{{evento.imagemURL}}"
+         src="/assets/{{event.imageURL}}"
          [style.width.px]="widthImg"
          [style.margin.px]="marginImg"
         >
       </td>
-      <td>{{evento.eventoId}}</td>
-      <td>{{evento.tema}}</td>
-      <td>{{evento.local}}</td>
-      <td>{{evento.dataEvento}}</td>
-      <td>{{evento.qtdPessoas}}</td>
-      <td>{{evento.lote}}</td>
+      <td>{{event.id}}</td>
+      <td>{{event.theme}}</td>
+      <td>{{event.place}}</td>
+      <td>{{event.eventDate}}</td>
+      <td>{{event.amountPeople}}</td>
+      <td>{{event.batch}}</td>
       <td>
         <button type="button" class="btn btn-primary btn-sm mr-2">Editar</button>
         <button type="button" class="btn btn-danger btn-sm">Excluir</button>
@@ -54,7 +54,7 @@
   </tbody>
   <tfoot>
     <tr>
-      <td *ngIf="!eventos.length" colspan="8" class="text-center">
+      <td *ngIf="!events.length" colspan="8" class="text-center">
         <h4>Nenhum evento encontrado!</h4>
       </td>
     </tr>
