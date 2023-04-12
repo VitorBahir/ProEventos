@@ -1,22 +1,19 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using ProEventos.Application.Contracts;
 using ProEventos.Domain;
-using ProEventos.Persistence.Contexts;
 
 namespace ProEventos.API.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class EventosController : ControllerBase
+    public class EventsController : ControllerBase
     {
         private readonly IEventService _eventService;
 
-        public EventosController(IEventService eventService)
+        public EventsController(IEventService eventService)
         {
             this._eventService = eventService;
         }

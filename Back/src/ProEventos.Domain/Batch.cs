@@ -1,7 +1,4 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace ProEventos.Domain
 {
@@ -9,12 +6,12 @@ namespace ProEventos.Domain
     {
         public int Id { get; set; }
         public string Name { get; set; }
-        public decimal Preco { get; set; }
-        public DateTime? DataInicio { get; set; }
-        public DateTime? DataFim { get; set; }
-        public int Quantidade { get; set; }
-        public int EventoId { get; set; }
-        public Event Evento { get; set; }
+        public decimal Price { get; set; }
+        public DateTime? StartDate { get; set; }
+        public DateTime? EndDate { get; set; }
+        public int Quantity { get; set; }
+        public int EventId { get; set; }
+        public Event Event { get; set; }
         
     }
 }

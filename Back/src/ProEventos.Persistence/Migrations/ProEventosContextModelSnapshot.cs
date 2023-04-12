@@ -2,7 +2,6 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
-using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ProEventos.Persistence.Contexts;
 
 namespace ProEventos.Persistence.Migrations
@@ -22,27 +21,27 @@ namespace ProEventos.Persistence.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<DateTime?>("DataFim")
+                    b.Property<DateTime?>("EndDate")
                         .HasColumnType("TEXT");
 
-                    b.Property<DateTime?>("DataInicio")
-                        .HasColumnType("TEXT");
-
-                    b.Property<int>("EventoId")
+                    b.Property<int>("EventId")
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("Name")
                         .HasColumnType("TEXT");
 
-                    b.Property<decimal>("Preco")
+                    b.Property<decimal>("Price")
                         .HasColumnType("TEXT");
 
-                    b.Property<int>("Quantidade")
+                    b.Property<int>("Quantity")
                         .HasColumnType("INTEGER");
+
+                    b.Property<DateTime?>("StartDate")
+                        .HasColumnType("TEXT");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("EventoId");
+                    b.HasIndex("EventId");
 
                     b.ToTable("Batches");
                 });
@@ -112,7 +111,7 @@ namespace ProEventos.Persistence.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<string>("Curriculo")
+                    b.Property<string>("Curriculum")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Email")
@@ -124,7 +123,7 @@ namespace ProEventos.Persistence.Migrations
                     b.Property<string>("Name")
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("Telefone")
+                    b.Property<string>("Phone")
                         .HasColumnType("TEXT");
 
                     b.HasKey("Id");
@@ -149,24 +148,26 @@ namespace ProEventos.Persistence.Migrations
 
             modelBuilder.Entity("ProEventos.Domain.Batch", b =>
                 {
-                    b.HasOne("ProEventos.Domain.Event", "Evento")
+                    b.HasOne("ProEventos.Domain.Event", "Event")
                         .WithMany("Batches")
-                        .HasForeignKey("EventoId")
+                        .HasForeignKey("EventId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Evento");
+                    b.Navigation("Event");
                 });
 
             modelBuilder.Entity("ProEventos.Domain.SocialMedia", b =>
                 {
                     b.HasOne("ProEventos.Domain.Event", "Event")
                         .WithMany("SocialMedias")
-                        .HasForeignKey("EventId");
+                        .HasForeignKey("EventId")
+                        .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("ProEventos.Domain.Speaker", "Speaker")
                         .WithMany("SocialMedias")
-                        .HasForeignKey("SpeakerId");
+                        .HasForeignKey("SpeakerId")
+                        .OnDelete(DeleteBehavior.Cascade);
 
                     b.Navigation("Event");
 

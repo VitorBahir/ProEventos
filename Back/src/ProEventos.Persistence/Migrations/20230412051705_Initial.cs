@@ -33,9 +33,9 @@ namespace ProEventos.Persistence.Migrations
                     Id = table.Column<int>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
                     Name = table.Column<string>(type: "TEXT", nullable: true),
-                    Curriculo = table.Column<string>(type: "TEXT", nullable: true),
+                    Curriculum = table.Column<string>(type: "TEXT", nullable: true),
                     ImagemURL = table.Column<string>(type: "TEXT", nullable: true),
-                    Telefone = table.Column<string>(type: "TEXT", nullable: true),
+                    Phone = table.Column<string>(type: "TEXT", nullable: true),
                     Email = table.Column<string>(type: "TEXT", nullable: true)
                 },
                 constraints: table =>
@@ -50,18 +50,18 @@ namespace ProEventos.Persistence.Migrations
                     Id = table.Column<int>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
                     Name = table.Column<string>(type: "TEXT", nullable: true),
-                    Preco = table.Column<decimal>(type: "TEXT", nullable: false),
-                    DataInicio = table.Column<DateTime>(type: "TEXT", nullable: true),
-                    DataFim = table.Column<DateTime>(type: "TEXT", nullable: true),
-                    Quantidade = table.Column<int>(type: "INTEGER", nullable: false),
-                    EventoId = table.Column<int>(type: "INTEGER", nullable: false)
+                    Price = table.Column<decimal>(type: "TEXT", nullable: false),
+                    StartDate = table.Column<DateTime>(type: "TEXT", nullable: true),
+                    EndDate = table.Column<DateTime>(type: "TEXT", nullable: true),
+                    Quantity = table.Column<int>(type: "INTEGER", nullable: false),
+                    EventId = table.Column<int>(type: "INTEGER", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Batches", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Batches_Events_EventoId",
-                        column: x => x.EventoId,
+                        name: "FK_Batches_Events_EventId",
+                        column: x => x.EventId,
                         principalTable: "Events",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
@@ -86,13 +86,13 @@ namespace ProEventos.Persistence.Migrations
                         column: x => x.EventId,
                         principalTable: "Events",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_SocialMedia_Speaker_SpeakerId",
                         column: x => x.SpeakerId,
                         principalTable: "Speaker",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -120,9 +120,9 @@ namespace ProEventos.Persistence.Migrations
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Batches_EventoId",
+                name: "IX_Batches_EventId",
                 table: "Batches",
-                column: "EventoId");
+                column: "EventId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_SocialMedia_EventId",
